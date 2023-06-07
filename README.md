@@ -1,4 +1,5 @@
 <h1>Sleeper invest</h1>
+<h1>verson 0.0.1</h1>
 내용 : 가상화폐 예측 시스템 및 자동화 시스템
 상세 : 우리가 자는 사이에 일을 해서 돈을 벌어다 줄수 있는 것이 무엇이 있을까 하다가
 만들게 되었습니다.
@@ -14,6 +15,8 @@
 
 <h2>파이프라인</h2>
 먼저 내가 만든 파이프라인을 소개했으면 한다
-현재 sleeper invest는 총 3개의 DAG로 나누어 진다.
+현재 sleeper invest는 총 1개의 DAG로 나누어 진다.
 
-<h2>개발일지</h2>
+<img width="1172" alt="image" src="https://github.com/Merlinkim/coin_project/assets/129494406/34ce3513-808e-4ceb-b9fe-3b320ea1cccb">
+
+
