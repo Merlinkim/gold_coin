@@ -17,6 +17,6 @@
 먼저 내가 만든 파이프라인을 소개했으면 한다
 현재 sleeper invest는 총 1개의 DAG로 나누어 진다.
 
-<img width="1172" alt="image" src="https://github.com/Merlinkim/coin_project/assets/129494406/34ce3513-808e-4ceb-b9fe-3b320ea1cccb">
+https://github.com/Merlinkim/coin_project/blob/6dd4de76e68abd4aab5b7cbbe4be585773a2e25b/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-06-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.40.31.png
 
 
