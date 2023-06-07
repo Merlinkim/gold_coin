@@ -6,7 +6,7 @@
 
 <h2>skill</h2>
 <li>
-  <li>data engineering & machine learning
+  <li>
     <ol>Airflow</ol>
     <ol>HDFS</ol>
     <ol>Hive</ol>
