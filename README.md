@@ -6,12 +6,10 @@
 
 <h2>skill</h2>
 <li>
-  <li>
     <ol>Airflow</ol>
     <ol>HDFS</ol>
     <ol>Hive</ol>
     <ol>pytouch</ol>
-  </li>
 </li>
 
 <h2>파이프라인</h2>
