@@ -1,1 +1,21 @@
-# coin_project
+<h1>Sleeper invest</h1>
+내용 : 가상화폐 예측 시스템 및 자동화 시스템
+상세 : 우리가 자는 사이에 일을 해서 돈을 벌어다 줄수 있는 것이 무엇이 있을까 하다가
+만들게 되었습니다.
+좀더 상세히 말하자면, 투자를 하다가 저을 보조 해줄 어떠한 것이 있었으면 좋겠다는 생각에 개발에 돌입하였습니다.
+
+<h2>skill</h2>
+<li>
+  <li>data engineering & machine learning
+    <ol>Airflow</ol>
+    <ol>HDFS</ol>
+    <ol>Hive</ol>
+    <ol>pytouch</ol>
+  </li>
+</li>
+
+<h2>파이프라인</h2>
+먼저 내가 만든 파이프라인을 소개했으면 한다
+현재 sleeper invest는 총 3개의 DAG로 나누어 진다.
+
+<h2>개발일지</h2>
