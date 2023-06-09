@@ -25,7 +25,6 @@ def coin_name():
     name_list.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
 
     engine.dispose()
-
     return name_list
 
 ############ 분봉정보 저장
@@ -52,15 +51,3 @@ def min_table(name_list):
 
         name_list.to_sql(name=coin_name, con=engine, if_exists='append', index=False)
     engine.dispose()
-    return coin_name
-
-def compare_by_df():
-    origin = "/Users/inseongkim/code/coin/coin/data/origin/name_data.json"
-    new = "/Users/inseongkim/code/coin/coin/data/tmp/name_data.json"
-    origin_df = pd.DataFrame(pd.read_json(origin))
-    new_df = pd.DataFrame(pd.read_json(new))
-    result=origin_df.equals(new_df)
-    if result == True:
-        return print("same with last values")
-    else:
-        raise ValueError

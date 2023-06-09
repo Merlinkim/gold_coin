@@ -25,12 +25,11 @@ def coin_name():
     name_list.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
 
     engine.dispose()
-
     return name_list
 
 ############ 분봉정보 저장
-######데이터베이스 테이블 이름은 -가 사용 불가하여 _로 변경
-def min_table(name_list):
+#####데이터베이스 테이블 이름은 -가 사용 불가하여 _로 변경
+def min_data(name_list):
 
     engine = create_engine('mysql+pymysql://inseong:Kiminseong!1@coinMysql/coin?charset=utf8mb4')
 
@@ -52,15 +51,28 @@ def min_table(name_list):
 
         name_list.to_sql(name=coin_name, con=engine, if_exists='append', index=False)
     engine.dispose()
-    return coin_name
 
-def compare_by_df():
-    origin = "/Users/inseongkim/code/coin/coin/data/origin/name_data.json"
-    new = "/Users/inseongkim/code/coin/coin/data/tmp/name_data.json"
-    origin_df = pd.DataFrame(pd.read_json(origin))
-    new_df = pd.DataFrame(pd.read_json(new))
-    result=origin_df.equals(new_df)
-    if result == True:
-        return print("same with last values")
-    else:
-        raise ValueError
+
+######### 데이터 비교 및 추가 삭제
+def compare_by_df(origin,new):
+
+    origin_df = pd.read_json(origin)
+
+    new_df = pd.read_json(new)
+
+    if not origin_df.equals(new_df):
+
+        temp_df=pd.concat([origin_df,new_df])
+
+        temp_df.drop_duplicates(inplace=True)
+
+        temp_df.to_json('/Users/inseongkim/code/coin/coin/data/tmp/change_name.json')
+
+        return print("name data has been changed. please check the changed data")
+    
+    else :
+
+        origin_df.to_json('/Users/inseongkim/code/coin/coin/data/tmp/change_name.json')
+
+        return print("name data didn't changed")
+

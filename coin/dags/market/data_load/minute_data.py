@@ -30,8 +30,10 @@ with DAG(
         task_id='end',
         bash_command="echo 'end'"
     )
-    data_calling = EmptyOperator(task_id='datacalling')  ## textfile으로 저장
-    data_framing = EmptyOperator(task_id='market_dataframe')
+    data_calling = PythonOperator(
+        task_id='datacalling',
+        python_callable=save_and_send
+        )  ## csv파일 떨어뜨리고 api정보 
     data_save = EmptyOperator(task_id='data_saving_to_db')
     data_preprocessing = EmptyOperator(task_id='preprocessing')
     post_data_prece = EmptyOperator(task_id='post_data_pre')
@@ -42,7 +44,7 @@ with DAG(
     chart_data_api = EmptyOperator(task_id='chart_data_api')
     dash_board = EmptyOperator(task_id='dash_board')
 
-    start >> data_calling >> data_framing >> data_save >> [data_preprocessing,post_data_saving,chart_data]
+    start >> data_calling >> data_save >> [data_preprocessing,post_data_saving,chart_data]
     data_preprocessing >> model_input >> model_output
     post_data_saving >> post_data_prece >> model_input >> model_output
     chart_data >> chart_data_api
