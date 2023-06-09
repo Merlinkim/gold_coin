@@ -29,12 +29,9 @@ def coin_name():
 
 ############ 분봉정보 저장
 #####데이터베이스 테이블 이름은 -가 사용 불가하여 _로 변경
-def min_data(name_list):
+def min_data(name_list_root):
 
-    engine = create_engine('mysql+pymysql://inseong:Kiminseong!1@coinMysql/coin?charset=utf8mb4')
-
-    name_list['market'].replace('-', '_',inplace=True)
-
+    name_list = pd.read_json(name_list_root)
     #확인
     print(name_list)
 
@@ -49,8 +46,9 @@ def min_data(name_list):
 
         name_list = pd.DataFrame(response.json())
 
-        name_list.to_sql(name=coin_name, con=engine, if_exists='append', index=False)
-    engine.dispose()
+        name_list.to_json(f'{name_list_root}/tmp/min_data.json')
+        
+
 
 
 ######### 데이터 비교 및 추가 삭제
