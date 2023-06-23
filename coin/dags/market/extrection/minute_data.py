@@ -14,7 +14,7 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'merlin',
     'depends_on_past': False,
-    'start_date': datetime(2023, 6, 1,tzinfo=local_tz),
+    'start_date': datetime(2023, 6, 25,tzinfo=local_tz),
     'retries': 0,
 }
 
