@@ -17,7 +17,7 @@ default_args = {
 }
 
 with DAG(
-    'calling_name_data',
+    'b4_data',
     default_args=default_args,
     schedule_interval='01 * * * *'
 )as dag:
