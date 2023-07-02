@@ -8,11 +8,11 @@ from upbit_def import min_data
 
 local_tz = pendulum.timezone("Asia/Seoul")
 
-####DAGS
+####이름 정보를 가져오는 dag
 default_args = {
     'owner': 'merlin',
     'depends_on_past': False,
-    'start_date': datetime(2023, 6, 22,tzinfo=local_tz),
+    'start_date': datetime(2023, 7, 4,tzinfo=local_tz),
     'retries': 0,
 }
 
@@ -29,11 +29,12 @@ with DAG(
         task_id = 'END',
         bash_command="echo 'END'"
     )
-    name_data_path = '/Users/merlinkim/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
+    name_data_path = '$HOME/tmp/data/min_name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
+
     dir_make = BashOperator(
         task_id = 'make_dir_local',
         bash_command= '''
-        mkdir /Users/merlinkim/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}
+        mkdir $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}
         '''
     )
     calling_name = BashOperator(
@@ -41,16 +42,20 @@ with DAG(
         bash_command="""
         curl --request GET \
         --url 'https://api.upbit.com/v1/market/all?isDetails=false' \
-        --header 'accept: application/json' >> /Users/merlinkim/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json
+        --header 'accept: application/json' >> $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json
      """
     )
     make_dfs_file = BashOperator(
         task_id = 'make_dfs_dir',
-        bash_command='hdfs dfs -mkdir -p /coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}'
+        bash_command='gsutil cp gs://coin_data_for_machine/coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}'
     )
     upload_to_dfs = BashOperator(
         task_id = 'upload_to_dfs',
-        bash_command='hdfs dfs -put /Users/merlinkim/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json /coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json'
+        bash_command='gsutil cp $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json gs://coin_data_for_machine/coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
+    )
+    mkdir_min_name = BashOperator(
+        task_id = 'min_name_dir',
+        bash_command=f'mkdir -p {name_data_path}'
     )
     make_min_name = PythonOperator(
         task_id = 'min_name_maker',
@@ -58,4 +63,4 @@ with DAG(
         op_args=[name_data_path]
     )
 
-start >> dir_make >> calling_name >> make_dfs_file >> upload_to_dfs >> make_min_name >> end
+start >> dir_make >> calling_name >> make_dfs_file >> upload_to_dfs >> mkdir_min_name >> make_min_name >> end
