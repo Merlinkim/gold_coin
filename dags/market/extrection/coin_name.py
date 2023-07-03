@@ -45,13 +45,9 @@ with DAG(
         --header 'accept: application/json' >> $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json
      """
     )
-    make_dfs_file = BashOperator(
-        task_id = 'make_dfs_dir',
-        bash_command='gsutil cp gs://coin_data_for_machine/coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}'
-    )
     upload_to_dfs = BashOperator(
         task_id = 'upload_to_dfs',
-        bash_command='gsutil cp $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json gs://coin_data_for_machine/coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
+        bash_command='gsutil cp $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/name.json gs://coindataformachine/coin/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
     )
     mkdir_min_name = BashOperator(
         task_id = 'min_name_dir',
@@ -63,4 +59,4 @@ with DAG(
         op_args=[name_data_path]
     )
 
-start >> dir_make >> calling_name >> make_dfs_file >> upload_to_dfs >> mkdir_min_name >> make_min_name >> end
+start >> dir_make >> calling_name >> upload_to_dfs >> mkdir_min_name >> make_min_name >> end

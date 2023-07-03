@@ -58,7 +58,7 @@ with DAG(
     upload_to_dfs = BashOperator(
         task_id = 'upload_to_dfs',
         bash_command='''
-        gsutil cp $HOME/tmp/data/minute/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/{{execution_date.add(hours=9).strftime("%H")}}/{{execution_date.add(hours=9).strftime("%M")}}/* gs://coin_data_for_machine/coin/data/minute/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/{{execution_date.add(hours=9).strftime("%H")}}/{{execution_date.add(hours=9).strftime("%M")}}/
+        gsutil cp $HOME/tmp/data/minute/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/{{execution_date.add(hours=9).strftime("%H")}}/{{execution_date.add(hours=9).strftime("%M")}}/* gs://coindataformachine/coin/data/minute/{{execution_date.add(hours=9).strftime("%Y%m%d")}}/{{execution_date.add(hours=9).strftime("%H")}}/{{execution_date.add(hours=9).strftime("%M")}}/
         '''  
         )
     error = BashOperator(
