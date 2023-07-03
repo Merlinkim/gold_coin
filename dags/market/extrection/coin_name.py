@@ -19,7 +19,7 @@ default_args = {
 with DAG(
     'calling_name_data',
     default_args=default_args,
-    schedule_interval='* */14 * * *'
+    schedule_interval='0 15 * * *'
 )as dag:
     start=BashOperator(
         task_id = 'start',
@@ -34,7 +34,7 @@ with DAG(
     dir_make = BashOperator(
         task_id = 'make_dir_local',
         bash_command= '''
-        mkdir $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}
+        mkdir -p $HOME/tmp/data/name/{{execution_date.add(hours=9).strftime("%Y%m%d")}}
         '''
     )
     calling_name = BashOperator(
