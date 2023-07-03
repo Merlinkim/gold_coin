@@ -12,14 +12,14 @@ local_tz = pendulum.timezone("Asia/Seoul")
 default_args = {
     'owner': 'merlin',
     'depends_on_past': False,
-    'start_date': datetime(2023, 7, 3,tzinfo=local_tz),
+    'start_date': datetime(2023, 7, 2,tzinfo=local_tz),
     'retries': 0,
 }
 
 with DAG(
     'calling_name_data',
     default_args=default_args,
-    schedule_interval='0 15 * * *'
+    schedule_interval='0 16 * * *'
 )as dag:
     start=BashOperator(
         task_id = 'start',
