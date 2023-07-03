@@ -19,7 +19,7 @@ default_args = {
 with DAG(
     'calling_name_data',
     default_args=default_args,
-    schedule_interval='0 13 * * *'
+    schedule_interval='* */14 * * *'
 )as dag:
     start=BashOperator(
         task_id = 'start',
