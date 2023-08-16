@@ -23,11 +23,13 @@ http://34.64.194.236:8080
 id : Viewer<br>
 pwd : 0000
 
-<h2>skill</h2>
-<ol>Airflow</ol>
-<ol>GCP storage</ol>
-<ol>python</ol>
-<ol>pytouch</ol>
+<h2>예상파트</h2>
+<ul>
+  <li>front-end</li>
+  <li>back-end for web site</li>
+  <li>data enginnering</li>
+  <li>MLOps for predition</li>
+</ul>
 
 
 <h2>파이프라인</h2>
