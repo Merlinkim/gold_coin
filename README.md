@@ -23,33 +23,6 @@ http://34.64.194.236:8080
 id : Viewer<br>
 pwd : 0000
 <hr>
-<h2>예상파트</h2>
-<ul>
-  <li>front-end</li>
-  <li>back-end for web site</li>
-  <li>data enginnering</li>
-  <li>MLOps for predition</li>
-</ul>
-불가능하다 무리다 라고 생각해도 할 예정입니다.
-다 타기 전까진 불이 남아 있으니까요.
-DB는 DE파트에서 가져갈 예정입니다.
-<br>
-<h2>파이프라인</h2>
-원래 계획한 대로 흘러가진 않았다.<br>
-그래서 총 2개로 실시간 데이터를 수집한다.<br>
-그리고 하나는 과거 데이터 셋를 수집한다<br>
-<br>
-
-전체 배치 작업
-![image](https://github.com/Merlinkim/coin_project/assets/129494406/89f2078d-f3ea-456b-9aa4-6990e5e355dc)
-
-1. 이름 데이터 수집
-
-![image](https://github.com/Merlinkim/coin_project/assets/129494406/d0aa2165-ab21-4a1e-a44f-21f75039613d)
-
-2. 분봉 데이터 수집
-![image](https://github.com/Merlinkim/coin_project/assets/129494406/dbc631c1-9128-4a9e-8a1d-beba447c9b04)
-
 
 
 
