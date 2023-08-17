@@ -32,7 +32,7 @@ with DAG(
         bash_command="echo 'END'"
     )
 
-    exe_date = '{{execution_date.add(hours=9).strftime("%Y%m%d%")}}'
+    exe_date = '{{execution_date.add(hours=9).strftime("%Y%m%d")}}'
     exe_hour = '{{execution_date.add(hours=9).strftime("%H")}}'
     exe_min = '{{execution_date.add(hours=9).strftime(%M)}}'
     local_min = f'$HOME/tmp/data/minute/{exe_date}/{exe_hour}/{exe_min}'

@@ -29,7 +29,11 @@ with DAG(
         task_id = 'END',
         bash_command="echo 'END'"
     )
-    #call the api 
-    calling_api=EmptyOperator(task_id='calling_api')
+    name_roller=EmptyOperator(task_id='name_roller')
+    execution_checker=EmptyOperator(task_id='execution_checker')
+    api_caller=EmptyOperator(task_id='API_Caller')
 
-    start >> calling_api >> end
+
+    start >> name_roller >> execution_checker >> api_caller >> end
+
+
