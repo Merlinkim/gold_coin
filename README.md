@@ -12,7 +12,7 @@
   <li>upbit</li>
   <li>Binance</li>
 </ul>
-
+만약 해당 dags를 실행하고자 한다면 my_package파일을 python path에 적용 시켜 주셔야 합니다.
 <br>
 <br>
 <hr>
