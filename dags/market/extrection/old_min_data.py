@@ -4,7 +4,8 @@ from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
 from datetime import datetime
 import pendulum
-from upbit_def import min_data
+from upbit_def import min_data,api_with_execute
+
 
 local_tz = pendulum.timezone("Asia/Seoul")
 
@@ -29,11 +30,15 @@ with DAG(
         task_id = 'END',
         bash_command="echo 'END'"
     )
-    name_roller=EmptyOperator(task_id='name_roller')
-    execution_checker=EmptyOperator(task_id='execution_checker')
-    api_caller=EmptyOperator(task_id='API_Caller')
+    data_saver=PythonOperator(
+        task_id='name_roller',
+        python_callable=api_with_execute,
+        op_args=[route,name_file]
+        )
+    fail_messager=EmptyOperator(task_id='messager')
+    sussced_message=EmptyOperator(task_id='sussced_message')
 
 
-    start >> name_roller >> execution_checker >> api_caller >> end
+    start >> data_saver >> [fail_messager,sussced_message] >> end
 
 
