@@ -8,13 +8,15 @@ from upbit_def import min_data,api_with_execute
 
 
 local_tz = pendulum.timezone("Asia/Seoul")
+line_mesg = "curl -X POST -H 'Authorization: Bearer 6Y3IVP0dZD9bREhqMS4pd0sZZg5QAh3N9eAcixrovns' -F 'message=this task has been error' https://notify-api.line.me/api/notify"
+s_line_mesg = "curl -X POST -H 'Authorization: Bearer 6Y3IVP0dZD9bREhqMS4pd0sZZg5QAh3N9eAcixrovns' -F 'message=this task has been completed' https://notify-api.line.me/api/notify"
 
 ####DAGS
 default_args = {
     'owner': 'merlin',
     'depends_on_past': False,
     'start_date': datetime(2023, 7, 5,tzinfo=local_tz),
-    'retries': 0,
+    'retries': 5,
 }
 
 with DAG(
@@ -35,8 +37,15 @@ with DAG(
         python_callable=api_with_execute,
         op_args=[route,name_file]
         )
-    fail_messager=EmptyOperator(task_id='messager')
-    sussced_message=EmptyOperator(task_id='sussced_message')
+    fail_messager=BashOperator(
+        task_id='messager',
+        bash_command=f"{line_mesg}"
+        )
+    sussced_message=BashOperator(
+        task_id='sussced_message',
+        bash_command=f"{s_line_mesg}"
+        )
+
 
 
     start >> data_saver >> [fail_messager,sussced_message] >> end
