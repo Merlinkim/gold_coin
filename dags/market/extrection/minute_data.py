@@ -66,4 +66,4 @@ with DAG(
         bash_command=f'{line_mesg}'
     )
 
-start >> dir_make >> calling_name >> upload_to_dfs >> error >> end
+start >> dir_make >> calling_name >> upload_to_dfs >> [error,end]
