@@ -7,6 +7,8 @@ import pendulum
 from upbit_def import min_data
 
 local_tz = pendulum.timezone("Asia/Seoul")
+execution_date='{{execution_date.add(hours=9).strftime("%Y%m%d")}}/'
+data_local_route='$data_route'
 
 ####이름 정보를 가져오는 dag
 default_args = {
